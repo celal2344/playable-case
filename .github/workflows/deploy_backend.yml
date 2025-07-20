@@ -18,11 +18,37 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: cd backend && npm install
+      - name: Pull project
+        script: |
+          cd playable-case/be
+          git pull origin main
 
-      - name: Build project
-        run: cd backend && npm run build
+      - name: Create .env on EC2
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            touch .env
+            echo "ACCESS_TOKEN_SECRET_KEY=${{ secrets.ACCESS_TOKEN_SECRET_KEY }}" > /home/ec2-user/playable-case/be/.env
+            echo "REFRESH_TOKEN_SECRET_KEY=${{ secrets.REFRESH_TOKEN_SECRET_KEY }}" >> /home/ec2-user/playable-case/be/.env
+            echo "ACCESS_TOKEN_EXPIRY=${{ secrets.ACCESS_TOKEN_EXPIRY }}" >> /home/ec2-user/playable-case/be/.env
+            echo "REFRESH_TOKEN_EXPIRY=${{ secrets.REFRESH_TOKEN_EXPIRY }}" >> /home/ec2-user/playable-case/be/.env
+            echo "CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}" >> /home/ec2-user/playable-case/be/.env
+            echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> /home/ec2-user/playable-case/be/.env
+            echo "PORT=${{ secrets.PORT }}" >> /home/ec2-user/playable-case/be/.env
+            echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> /home/ec2-user/playable-case/be/.env
+            echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> /home/ec2-user/playable-case/be/.env
+            echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> /home/ec2-user/playable-case/be/.env
+            echo "EMAIL_SENDER=${{ secrets.EMAIL_SENDER }}" >> /home/ec2-user/playable-case/be/.env
+            echo "GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}" >> /home/ec2-user/playable-case/be/.env
+
+      - name: Run Project
+        script: |
+          npm install
+          npm run dev
+          pm2 restart all
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.10
