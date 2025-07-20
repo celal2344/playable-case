@@ -42,5 +42,5 @@ jobs:
             echo "EMAIL_SENDER=${{ secrets.EMAIL_SENDER }}" >> .env
             echo "GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}" >> .env
             npm install
-            npm run dev
+            npm run start
             pm2 restart all
