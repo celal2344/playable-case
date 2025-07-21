@@ -41,5 +41,6 @@ jobs:
             echo "EMAIL_SENDER=${{ secrets.EMAIL_SENDER }}" >> .env
             echo "GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}" >> .env
             npm install
-            npm run start
+            npm install -g pm2
+            pm2 start ecosystem.config.cjs || pm2 restart playable-api
             pm2 restart all
