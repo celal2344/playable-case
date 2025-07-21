@@ -27,8 +27,7 @@ jobs:
           port: 22
           script: |
             cd /home/ec2-user/playable-case/be
-            git pull origin main
-            touch .env
+            git pull origin ${{ github.head_ref }}
             echo "ACCESS_TOKEN_SECRET_KEY=${{ secrets.ACCESS_TOKEN_SECRET_KEY }}" > .env
             echo "REFRESH_TOKEN_SECRET_KEY=${{ secrets.REFRESH_TOKEN_SECRET_KEY }}" >> .env
             echo "ACCESS_TOKEN_EXPIRY=${{ secrets.ACCESS_TOKEN_EXPIRY }}" >> .env
