@@ -240,7 +240,7 @@ export default function ProductsPage() {
               </div>
               <h3 className="text-lg font-semibold mb-2">No products found</h3>
               <p className="text-gray-600 mb-4">Try adjusting your filters or search terms</p>
-              <Button onClick={clearFilters}>Clear Filters</Button>
+              <Button onClicgk={clearFilters}>Clear Filters</Button>
             </div>
           )}
           <ProductGrid products={filteredProducts} />
