@@ -11,7 +11,7 @@ class ApiClient {
   private baseURL: string
   private token: string | null = null
 
-  constructor(baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") {
+  constructor(baseURL = process.env.API_URL || "http://localhost:5000") {
     this.baseURL = baseURL
     this.loadToken()
   }
