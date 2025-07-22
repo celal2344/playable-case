@@ -23,7 +23,7 @@ export default function CheckoutPage() {
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
     email: user?.email || "",
-    phone: user?.phone || "",
+    phone: user?.phoneNumber || "",
     address: "",
     city: "",
     state: "",
