@@ -1,0 +1,662 @@
+info:
+  title: Ecommerce Backend Testing
+  version: 1.0.0
+servers:
+  - url: http://{{server}}
+tags:
+  - name: Health Check
+  - name: User
+  - name: Wishlist
+  - name: Review
+  - name: Product
+  - name: Payment
+  - name: Cart
+  - name: Order
+  - name: Address
+  - name: Category
+paths:
+  /healthCheck/:
+    get:
+      tags:
+        - Health Check
+      summary: Health Check
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/register:
+    post:
+      tags:
+        - User
+      summary: Register
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fullName:
+                  type: string
+                  example: Sahil Rana
+                email:
+                  type: string
+                  example: ranasatish297@gmail.com
+                password:
+                  type: string
+                  example: Rana@2002
+                phoneNumber:
+                  type: integer
+                  example: '7011175630'
+                role:
+                  type: string
+                  example: Admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/login:
+    post:
+      tags:
+        - User
+      summary: Login (OTP Başlat)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: user@example.com
+                password: userpassword
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/verify-otp:
+    post:
+      tags:
+        - User
+      summary: Verify OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: user@example.com
+                otp: '123456'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/refresh-token:
+    post:
+      tags:
+        - User
+      summary: Refresh Token
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/current-user:
+    get:
+      tags:
+        - User
+      summary: Current User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/update-password:
+    patch:
+      tags:
+        - User
+      summary: Update Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                oldPassword: Rana@2002
+                newPassword: Sahil@2002
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/update-account-details:
+    patch:
+      tags:
+        - User
+      summary: Update Account Details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                phoneNumber: '1234567890'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/logout:
+    post:
+      tags:
+        - User
+      summary: Logout
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/change-user-role/679dce7eacb92441fb9577b1:
+    patch:
+      tags:
+        - User
+      summary: Change User role
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/send-otp:
+    post:
+      tags:
+        - User
+      summary: Send OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: user@example.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /wishlist/create-wishlist/679f2f5c1820bbce9ee9e426:
+    post:
+      tags:
+        - Wishlist
+      summary: Create Wishlist
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /wishlist/add-product-wishlist/679f2f0f1820bbce9ee9e41f:
+    patch:
+      tags:
+        - Wishlist
+      summary: Add Product
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /wishlist/67a06ba6d6e8258bde5e10c1/679f2f0f1820bbce9ee9e41f:
+    get:
+      tags:
+        - Wishlist
+      summary: Get wishlist
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - Wishlist
+      summary: Remove Product From wishlist
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /review/create-review/679f2ad7e2d0c7588075b782:
+    post:
+      tags:
+        - Review
+      summary: Create Review
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                comment: Noice
+                rating: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /review/user-review:
+    get:
+      tags:
+        - Review
+      summary: User Review
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /review/679f2ad7e2d0c7588075b782/679f6d0c87ea665b9c44955c:
+    get:
+      tags:
+        - Review
+      summary: Get review By id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - Review
+      summary: Update Review
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                rating: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Review
+      summary: Delete Review
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/product-listing/679f1e82b789e325439a0c1f:
+    post:
+      tags:
+        - Product
+      summary: List Product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                productImages:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+                  example: latpop
+                description:
+                  type: string
+                  example: It types good
+                price:
+                  type: integer
+                  example: '100000'
+                stock:
+                  type: integer
+                  example: '50'
+                brand:
+                  type: string
+                  example: Apple
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/get-product/679f2fb51820bbce9ee9e42d:
+    get:
+      tags:
+        - Product
+      summary: Get Product
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/get-all-products:
+    get:
+      tags:
+        - Product
+      summary: Get All Products
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/update-product-images/679f2dd61820bbce9ee9e418:
+    patch:
+      tags:
+        - Product
+      summary: Update product Images
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                productImages:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/update-product/679f2dd61820bbce9ee9e418:
+    patch:
+      tags:
+        - Product
+      summary: Update Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Sony Camera
+                stock: '30'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/change-product-category/679f2dd61820bbce9ee9e418/679f1f723bec054159ad666b:
+    patch:
+      tags:
+        - Product
+      summary: Update Category product
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/delete-product/679f2dd61820bbce9ee9e418:
+    delete:
+      tags:
+        - Product
+      summary: Delete Product
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /payment/verify-payment/67a1c6565b54a0357e5a939a:
+    post:
+      tags:
+        - Payment
+      summary: Payment Verification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                signature: >-
+                  26d44b80b5469847ca63ed3ea7cad442630a55d040e0cc77c2a36ab1f064f380
+                razorpayOrderId: order_PrB9akYQZNGt31
+                razorpayPaymentId: payment_Abc123456
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /cart/create-cart/679f2ad7e2d0c7588075b782:
+    post:
+      tags:
+        - Cart
+      summary: Create Cart
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /cart/remove-same-products/679f2ad7e2d0c7588075b782:
+    patch:
+      tags:
+        - Cart
+      summary: Remove all same product
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /cart/679f2ad7e2d0c7588075b782:
+    patch:
+      tags:
+        - Cart
+      summary: Remove single product
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Cart
+      summary: Delete Cart
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /cart/add-product/679f2ad7e2d0c7588075b782:
+    patch:
+      tags:
+        - Cart
+      summary: Add product to cart
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /cart//get-cart:
+    get:
+      tags:
+        - Cart
+      summary: Get Cart
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order/create-single-order/679f2fb51820bbce9ee9e42d/679f66a1b426c8b34539fef4:
+    post:
+      tags:
+        - Order
+      summary: Create single order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                quantity: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order/create-cart-order/67a07e660b91b1bcb62a64ef/679f66a1b426c8b34539fef4:
+    post:
+      tags:
+        - Order
+      summary: Create Cart Order
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /address/add-address:
+    post:
+      tags:
+        - Address
+      summary: Add Address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                houseNumber: Rzf-2/166 Flat no t10
+                area: Vijay enclave
+                landmark: Gym
+                city: Palam Vhar
+                pincode: '110075'
+                state: Delhi
+                mobileNumber: '9941292929'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /address/all-user-address:
+    get:
+      tags:
+        - Address
+      summary: All user address
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /address/679f67e07d15fc43dcbaea53:
+    patch:
+      tags:
+        - Address
+      summary: Update Address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                state: Haryana
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Address
+      summary: Get address
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Address
+      summary: Delete Address
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/create-category:
+    post:
+      tags:
+        - Category
+      summary: Create Cateogry
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Luxury
+                description: Luxury Goods and Items
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/all-categories:
+    get:
+      tags:
+        - Category
+      summary: All Categories
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/679f1f723bec054159ad666b:
+    get:
+      tags:
+        - Category
+      summary: Get category By Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/679f1f2f6441f5e77101117d:
+    patch:
+      tags:
+        - Category
+      summary: update Category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Imported Goods
+                description: Imported goods from outer country
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Category
+      summary: Delete Category
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

@@ -234,7 +234,7 @@ const getProducts = asyncHandler(async (req, res) => {
         if (!filter.price) filter.price = {};
         filter.price = { ...filter.price, $lte: maxPrice };
     }
-    const sort = {};
+    let sort = {};
     if (sortBy) {
         const [field, order] = sortBy.split(':');
         if (['name', 'price'].includes(field) && ['asc', 'desc'].includes(order)) {
@@ -302,7 +302,7 @@ const getProducts = asyncHandler(async (req, res) => {
     return res
         .status(200)
         .json(new ApiResponse(200, {
-            products,
+            data:products,
             pagination: {
                 currentPage: page,
                 totalPages: Math.ceil(totalProducts / limit),
