@@ -286,16 +286,21 @@ const sendOtp = asyncHandler(async (req, res) => {
 const verifyOtp = asyncHandler(async (req, res) => {
     const { email, otp } = req.body;
     if (!email || !otp) {
+        console.log("Email ve OTP gereklidir");
         throw new ApiError(400, "Email ve OTP gereklidir");
     }
     const user = await User.findOne({ email });
+    console.log(user)
     if (!user || !user.otp || !user.otpExpires) {
+        console.log("Otp bulunaamadı");
         throw new ApiError(400, "OTP bulunamadı");
     }
     if (user.otp !== otp) {
+        console.log("Otp yanlış");
         throw new ApiError(400, "OTP yanlış");
     }
     if (Date.now() > user.otpExpires) {
+        console.log("OTP süresi doldu");
         throw new ApiError(400, "OTP süresi doldu");
     }
 

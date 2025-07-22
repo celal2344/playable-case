@@ -1,0 +1,931 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ecommerce Backend Testing",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "paths": {
+    "/healthCheck/": {
+      "get": {
+        "summary": "Health Check",
+        "parameters": [],
+        "responses": {},
+        "operationId": "get_healthCheck"
+      }
+    },
+    "/users/register": {
+      "post": {
+        "summary": "Register",
+        "parameters": [],
+        "responses": {},
+        "operationId": "post_users_register"
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login (OTP Ba\u015flat)",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_users_login"
+      }
+    },
+    "/users/verify-otp": {
+      "post": {
+        "summary": "Verify OTP (Email ve Login)",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "otp": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_users_verify-otp"
+      }
+    },
+    "/users/refresh-token": {
+      "post": {
+        "summary": "Refresh Token",
+        "parameters": [
+          {
+            "name": "Cookie",
+            "in": "header",
+            "required": false,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlkY2Q5NGFjYjkyNDQxZmI5NTc3YWQiLCJpYXQiOjE3MzgzOTcwMjAsImV4cCI6MTczOTI2MTAyMH0.w-3QW0tqL_kL89zgJa1eV87HBxakqnMyipXUbMgNVL0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "post_users_refresh-token"
+      }
+    },
+    "/users/current-user": {
+      "get": {
+        "summary": "Current User",
+        "parameters": [],
+        "responses": {},
+        "operationId": "get_users_current-user"
+      }
+    },
+    "/users/update-password": {
+      "patch": {
+        "summary": "Update Password",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "oldPassword": {
+                    "type": "string"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "patch_users_update-password"
+      }
+    },
+    "/users/update-account-details": {
+      "patch": {
+        "summary": "Update Account Details",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "patch_users_update-account-details"
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "summary": "Logout",
+        "parameters": [],
+        "responses": {},
+        "operationId": "post_users_logout"
+      }
+    },
+    "/users/change-user-role/{id}": {
+      "patch": {
+        "summary": "Change User role",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_users_change-user-role_id"
+      }
+    },
+    "/users/send-otp": {
+      "post": {
+        "summary": "Send OTP",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_users_send-otp"
+      }
+    },
+    "/wishlist/create-wishlist/{id}": {
+      "post": {
+        "summary": "Create Wishlist",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "post_wishlist_create-wishlist_id"
+      }
+    },
+    "/wishlist/add-product-wishlist/{id}": {
+      "patch": {
+        "summary": "Add Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_wishlist_add-product-wishlist_id"
+      }
+    },
+    "/wishlist/{id}/{id2}": {
+      "get": {
+        "summary": "Get Wishlist Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "get_wishlist_id_id"
+      },
+      "patch": {
+        "summary": "Remove Product From wishlist",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_wishlist_id_id"
+      }
+    },
+    "/review/create-review/{id}": {
+      "post": {
+        "summary": "Create Review",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "comment": {
+                    "type": "string"
+                  },
+                  "rating": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_review_create-review_id"
+      }
+    },
+    "/review/user-review": {
+      "get": {
+        "summary": "User Review",
+        "parameters": [],
+        "responses": {},
+        "operationId": "get_review_user-review"
+      }
+    },
+    "/review/{id}/{id2}": {
+      "get": {
+        "summary": "Get review By id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "get_review_id_id"
+      },
+      "patch": {
+        "summary": "Update Review",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rating": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "patch_review_id_id"
+      },
+      "delete": {
+        "summary": "Delete Review",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "delete_review_id_id"
+      }
+    },
+    "/product/product-listing/{id}": {
+      "post": {
+        "summary": "List Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "post_product_product-listing_id"
+      }
+    },
+    "/product/get-product/{id}": {
+      "get": {
+        "summary": "Get Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "get_product_get-product_id"
+      }
+    },
+    "/product/get-all-products": {
+      "get": {
+        "summary": "Get All Products",
+        "parameters": [],
+        "responses": {},
+        "operationId": "get_product_get-all-products"
+      }
+    },
+    "/product/update-product-images/{id}": {
+      "patch": {
+        "summary": "Update product Images",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_product_update-product-images_id"
+      }
+    },
+    "/product/update-product/{id}": {
+      "patch": {
+        "summary": "Update Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "stock": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "patch_product_update-product_id"
+      }
+    },
+    "/product/change-product-category/{id}/{id2}": {
+      "patch": {
+        "summary": "Update Category product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_product_change-product-category_id_id"
+      }
+    },
+    "/product/delete-product/{id}": {
+      "delete": {
+        "summary": "Delete Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "delete_product_delete-product_id"
+      }
+    },
+    "/payment/verify-payment/{id}": {
+      "post": {
+        "summary": "Payment Verification",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "signature": {
+                    "type": "string"
+                  },
+                  "razorpayOrderId": {
+                    "type": "string"
+                  },
+                  "razorpayPaymentId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_payment_verify-payment_id"
+      }
+    },
+    "/cart/create-cart/{id}": {
+      "post": {
+        "summary": "Create Cart",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "post_cart_create-cart_id"
+      }
+    },
+    "/cart/remove-same-products/{id}": {
+      "patch": {
+        "summary": "Remove all same product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_cart_remove-same-products_id"
+      }
+    },
+    "/cart/{id}": {
+      "patch": {
+        "summary": "Remove single product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_cart_id"
+      },
+      "delete": {
+        "summary": "Delete Cart",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "delete_cart_id"
+      }
+    },
+    "/cart/add-product/{id}": {
+      "patch": {
+        "summary": "Add product to cart",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "patch_cart_add-product_id"
+      }
+    },
+    "/cart//get-cart": {
+      "get": {
+        "summary": "Get Cart",
+        "parameters": [],
+        "responses": {},
+        "operationId": "get_cart__get-cart"
+      }
+    },
+    "/order/create-single-order/{id}/{id2}": {
+      "post": {
+        "summary": "Create single order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_order_create-single-order_id_id"
+      }
+    },
+    "/order/create-cart-order/{id}/{id2}": {
+      "post": {
+        "summary": "Create Cart Order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "post_order_create-cart-order_id_id"
+      }
+    },
+    "/address/add-address": {
+      "post": {
+        "summary": "Add Address",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "houseNumber": {
+                    "type": "string"
+                  },
+                  "area": {
+                    "type": "string"
+                  },
+                  "landmark": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "pincode": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "mobileNumber": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_address_add-address"
+      }
+    },
+    "/address/all-user-address": {
+      "get": {
+        "summary": "All user address",
+        "parameters": [],
+        "responses": {},
+        "operationId": "get_address_all-user-address"
+      }
+    },
+    "/address/{id}": {
+      "patch": {
+        "summary": "Update Address",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "patch_address_id"
+      },
+      "get": {
+        "summary": "Get address",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "get_address_id"
+      },
+      "delete": {
+        "summary": "Delete Address",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "delete_address_id"
+      }
+    },
+    "/category/create-category": {
+      "post": {
+        "summary": "Create Cateogry",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_category_create-category"
+      }
+    },
+    "/category/all-categories": {
+      "get": {
+        "summary": "All Categories",
+        "parameters": [],
+        "responses": {},
+        "operationId": "get_category_all-categories"
+      }
+    },
+    "/category/{id}": {
+      "patch": {
+        "summary": "update Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "patch_category_id"
+      },
+      "delete": {
+        "summary": "Delete Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "operationId": "delete_category_id"
+      }
+    }
+  }
+}

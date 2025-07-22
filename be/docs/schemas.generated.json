@@ -1,0 +1,394 @@
+{
+  "components": {
+    "schemas": {
+      "Address": {
+        "title": "Address",
+        "required": [
+          "owner",
+          "mobileNumber",
+          "houseNumber",
+          "area",
+          "city",
+          "pincode",
+          "state"
+        ],
+        "properties": {
+          "owner": {
+            "type": "schemaobjectid"
+          },
+          "mobileNumber": {
+            "type": "number"
+          },
+          "houseNumber": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string"
+          },
+          "landmark": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "pincode": {
+            "type": "number"
+          },
+          "state": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Cart": {
+        "title": "Cart",
+        "required": [
+          "owner"
+        ],
+        "properties": {
+          "owner": {
+            "type": "schemaobjectid"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "schemaobjectid"
+            }
+          },
+          "totalPrice": {
+            "type": "number"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Category": {
+        "title": "Category",
+        "required": [
+          "name",
+          "description"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Order": {
+        "title": "Order",
+        "required": [
+          "buyer",
+          "totalPrice",
+          "paymentStatus",
+          "address"
+        ],
+        "properties": {
+          "buyer": {
+            "type": "schemaobjectid"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "schemaobjectid",
+              "required": true
+            }
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "totalPrice": {
+            "type": "number"
+          },
+          "paymentStatus": {
+            "type": "string"
+          },
+          "paymentDeatils": {
+            "type": "schemaobjectid"
+          },
+          "address": {
+            "type": "schemaobjectid"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Payment": {
+        "title": "Payment",
+        "required": [
+          "owner",
+          "userOrderId",
+          "razorpayOrderId",
+          "razorpayPaymentId",
+          "paymentMethod",
+          "paymentStatus",
+          "transactionId"
+        ],
+        "properties": {
+          "owner": {
+            "type": "schemaobjectid"
+          },
+          "userOrderId": {
+            "type": "schemaobjectid"
+          },
+          "razorpayOrderId": {
+            "type": "string"
+          },
+          "razorpayPaymentId": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": [
+              "Credit Card",
+              "Debit Card",
+              "Net Banking",
+              "UPI",
+              "Cash on Delivery"
+            ]
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": [
+              "Created",
+              "Authorized",
+              "Captured",
+              "Refunded",
+              "Failed"
+            ]
+          },
+          "transactionId": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Product": {
+        "title": "Product",
+        "required": [
+          "seller",
+          "name",
+          "description",
+          "price",
+          "category",
+          "images"
+        ],
+        "properties": {
+          "seller": {
+            "type": "schemaobjectid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "stock": {
+            "type": "number"
+          },
+          "category": {
+            "type": "schemaobjectid"
+          },
+          "brand": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "imagesPublicId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "review": {
+            "type": "array",
+            "items": {
+              "type": "schemaobjectid"
+            }
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Review": {
+        "title": "Review",
+        "required": [
+          "owner",
+          "rating"
+        ],
+        "properties": {
+          "owner": {
+            "type": "schemaobjectid"
+          },
+          "rating": {
+            "type": "number"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "User": {
+        "title": "User",
+        "required": [
+          "fullName",
+          "email",
+          "password",
+          "phoneNumber"
+        ],
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "User",
+              "Admin",
+              "SuperAdmin"
+            ]
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "otp": {
+            "type": "string"
+          },
+          "otpExpires": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isEmailVerified": {
+            "type": "boolean"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Wishlist": {
+        "title": "Wishlist",
+        "required": [
+          "owner"
+        ],
+        "properties": {
+          "owner": {
+            "type": "schemaobjectid"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "schemaobjectid"
+            }
+          },
+          "_id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

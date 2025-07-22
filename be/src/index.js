@@ -10,10 +10,10 @@ dotenv.config({
 
 connectDb()
     .then(() => {
-        app.listen(process.env.PORT || 8000, () => {
-            console.log(`The server is running successfully on ${process.env.PORT}`)
+            app.listen(process.env.PORT || 5000, "0.0.0.0", () => {
+                console.log(`The server is running successfully on ${process.env.PORT || 5000}`)
+            });
         })
-    })
     .catch((err) => {
         console.error("There is a problem while connecting the server ", err);
         throw new ApiError(500, "Unable to connect to Database")
